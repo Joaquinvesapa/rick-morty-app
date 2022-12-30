@@ -10,6 +10,12 @@ module.exports = {
 				'dk-grey': '#212121',
 				'lt-white': '#E1E5CE'
 			  },
+			  width: {
+				'84': '350px',
+			  },
+			  height:{
+				'100': '100vh'
+			  }
 		},
 	},
 	plugins: [],
