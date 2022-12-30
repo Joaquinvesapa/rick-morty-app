@@ -1,5 +1,7 @@
 ---
 import Card from "../components/Card.astro";
+//MainLayout
+import Footer from "../components/Footer.astro";
 ---
 
 <!DOCTYPE html>
@@ -11,16 +13,16 @@ import Card from "../components/Card.astro";
   <title>Document</title>
 </head>
 <body>
-  <div class="grid place-items-center">
-    <Card></Card>
+  <div class="bg-dk-violet w-full h-screen">
+    <div class="relative w-full max-w-6xl flex items-center justify-center">
+      <div class="absolute w-24 h-72 rounded-full bg-pink filter blur-3xl opacity-50 top-32 left-0"></div>
+      <div class="absolute w-32 h-72 rounded-full bg-lt-green filter blur-3xl opacity-70 right-0"></div>
+    </div>
   </div>
-  <slot/>
 </body>
 </html>
 
 <style>
-  *{
-    margin: 0;
-    padding: 0;  }
+  
 
 </style>
