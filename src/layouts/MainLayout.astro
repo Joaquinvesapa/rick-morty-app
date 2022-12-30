@@ -2,6 +2,7 @@
 import Card from "../components/Card.astro";
 //MainLayout
 import Footer from "../components/Footer.astro";
+import SearchComponent from "../components/SearchComponent.astro";
 ---
 
 <!DOCTYPE html>
@@ -13,16 +14,24 @@ import Footer from "../components/Footer.astro";
   <title>Document</title>
 </head>
 <body>
-  <div class="bg-dk-violet w-full h-screen">
-    <div class="relative w-full max-w-6xl flex items-center justify-center">
-      <div class="absolute w-24 h-72 rounded-full bg-pink filter blur-3xl opacity-50 top-32 left-0"></div>
-      <div class="absolute w-32 h-72 rounded-full bg-lt-green filter blur-3xl opacity-70 right-0"></div>
+  <div class="bg-dk-violet w-full h-screen flex justify-center">
+    <div class="absolute w-96 h-96 rounded-full bg-pink filter blur-3xl opacity-40 left-0 top-32"></div>
+    <div class="absolute w-96 h-96 rounded-full bg-lt-green filter blur-3xl opacity-40 right-0"></div>
+    <div class="relative w-full max-w-6xl flex justify-center">
+      <div class="relative min-w-72 w-10/12 h-screen main-content flex flex-col">
+        <div class="h-64 w-full tittle flex justify-center items-center">
+          <img class="md:h-40 md:w-auto drop-shadow-[0_8px_1px_rgba(0,0,0,0.5)] relative w-auto h-auto" src="/Rick_and_Morty.png"alt="Imagen de Rick And Morty">
+        </div>
+        <SearchComponent></SearchComponent>
+      </div>
     </div>
   </div>
 </body>
 </html>
 
 <style>
-  
-
+  @import url('https://fonts.googleapis.com/css2?family=Catamaran:wght@500&display=swap');
+  *{
+    font-family: 'Catamaran', sans-serif;
+  }
 </style>
