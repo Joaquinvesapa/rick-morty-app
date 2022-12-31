@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 const response = await fetch('https://rickandmortyapi.com/api/character')
 const data = await response.json();//guarda datos en una variable
-const characters = data.results.splice(0, 10);//limitando la carga a 2 datos solamente
+const characters = data.results.splice(0,10);//limitando la carga a 2 datos solamente
 // console.log(characters[9].status)
 
 const renderStatusSwitch = (status) => {
@@ -19,6 +19,8 @@ const renderStatusSwitch = (status) => {
 const SearchTable = () => {
 
     const [search, setSearch] = new useState('');
+
+    const [isEmpty, setIsEmpty] = new useState(true);
     console.log(search)
 
   return (
@@ -40,7 +42,7 @@ const SearchTable = () => {
               <p className="relative top-2">Gender: {item.gender}</p>
               </div>  
           </div>
-          ))}
+      ))}
       </div>
     </div>
 
