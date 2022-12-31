@@ -37,6 +37,7 @@ const SearchTable = () => {
               <div className="text-lt-white text-content">
               <h2 className="text-xl 2xl:text-2xl">{item.name}</h2>
               <p className="relative top-2">{renderStatusSwitch(item.status)}</p>
+              <p className="relative top-2">Gender: {item.gender}</p>
               </div>  
           </div>
           ))}
