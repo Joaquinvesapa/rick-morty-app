@@ -28,9 +28,9 @@ const SearchTable = () => {
       </div>
       <div className="relative grid items-center w-full top-9 h-auto grid-cols-1 gap-2 md:grid-cols-2 md:gap-3 xl:grid-cols-3 xl:gap-4">
       {characters.filter((item)=>{
-        return search.toLowerCase() === 'Rick'
+        return search.toLowerCase() === ''
         ? item
-        : item.name.toLowerCase().includes(search);
+        : item.name.toLowerCase().includes(search.toLowerCase());
       }).map((item) =>(
           <div key={item.id} className="p-5 bg-dk-grey drop-shadow-[5px_10px_5px_rgba(0,0,0,0.8)] h-auto w-auto rounded-2xl flex justify-start flex-row max-w-xl space-x-7">
               <img className="object-cover w-36 rounded-2xl h-auto lg:w-44" src={item.image} alt=""/>     
