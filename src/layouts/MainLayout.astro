@@ -4,6 +4,7 @@ import Cards2 from "../components/Cards2.jsx";
 //MainLayout
 import Footer from "../components/Footer.astro";
 import SearchComponent from "../components/SearchComponent.astro";
+import SearchTable from "../components/SearchTable.jsx";
 
 ---
 
@@ -24,8 +25,8 @@ import SearchComponent from "../components/SearchComponent.astro";
         <div class="h-64 w-full tittle flex justify-center items-center">
           <img class="md:h-40 md:w-auto drop-shadow-[5px_12px_3px_rgba(0,0,0,0.5)] relative w-auto h-auto" src="/Rick_and_Morty.png"alt="Imagen de Rick And Morty">
         </div>
-        <SearchComponent></SearchComponent>
-        <Cards2></Cards2>
+        
+        <SearchTable client:load></SearchTable>
       </div>
     </div>
   </div>

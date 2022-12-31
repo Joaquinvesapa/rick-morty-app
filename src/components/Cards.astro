@@ -22,7 +22,7 @@ const renderStatusSwitch = (status : any ) => {
   {
     characters.map(character =>(
       <div class="p-5 bg-dk-grey drop-shadow-[5px_10px_5px_rgba(0,0,0,0.8)] h-auto w-auto rounded-2xl flex justify-start flex-row max-w-xl space-x-7">
-        <img class="object-cover w-36 rounded-2xl h-auto lg:w-44" src={character.image} alt="">     
+        <img class="object-cover w-36 rounded-2xl h-auto lg:w-44" src={character.image} alt=""/>     
         <div class="text-lt-white text-content">
           <h2 class="text-xl 2xl:text-2xl">{character.name}</h2>
           <p class="relative top-2">{renderStatusSwitch(character.status)}</p>
