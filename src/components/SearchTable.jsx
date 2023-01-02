@@ -1,4 +1,7 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
+import Categories from './Categories';
+import { set, useForm, useController } from "react-hook-form";
+import { RadioGroup } from '@headlessui/react';
 const response = await fetch('https://rickandmortyapi.com/api/character')
 const data = await response.json();//guarda datos en una variable
 const results = data.results.splice(0,10);//limitando la carga a 2 datos solamente
@@ -9,28 +12,75 @@ const renderStatusSwitch = (status) => {
     case 'Alive':
       return 'Status: 🟢 Alive';
     case 'Dead':
-      return 'Status: 🔴 Death';
+      return 'Status: 🔴 Dead';
     case 'unknown':
       return 'Status: ❔';
   }
 }
 
-
 const SearchTable = () => {
+
+  //#region 
+  const [category, setCategory] = useState('')
+
+    const categories = [
+        "Female",
+        "Male",
+        "Alive",
+        "Dead",
+        "Unknwon"
+    ]
+    const handleCategory = (category) =>{
+      console.log(category)
+        setCategory(category)
+    }
 
     const [search, setSearch] = new useState('');
     const [characters, setCharacters] = new useState(results)
 
+    const filterByName = (items) => {
+      console.log(items)
+      return items.filter(item => item.name.toLowerCase().includes(search.toLowerCase()))
+    }
+    const filterByStatus = (items) => {
+      console.log(items)
+      return items.filter(item => item.status.toLowerCase().includes(category.toLowerCase()))
+    }
+    const filterByGender = (items) =>{
+      console.log(items)
+      return items.filter(item => item.gender.toLowerCase().includes(category.toLowerCase()))
+    }
+
     const filterCharacters = () => {
-      const filter = characters.filter(item => item.name.toLowerCase().includes(search.toLowerCase()))
+      let filter = filterByName(characters)
+      filter = filterByGender(filter)
+      filter = filterByStatus(filter)
+
       return filter
     }
 
 
   return (
     <div>
-      <div className="w-full relative flex justify-center">
+      <div className="w-full relative flex flex-col justify-center">
           <input onChange={(e) => setSearch(e.target.value)} placeholder="Search" className="text-bold py-2 pl-4 pr-3 focus:outline-none focus:ring-dk-grey focus:ring-2 focus:border-dk-grey shadow-inner-xl relative h-8 bg-lt-white w-full rounded-xl drop-shadow-[5px_12px_3px_rgba(0,0,0,0.5)]"/>
+          <div className='relative top-5'>
+          <RadioGroup 
+          value={category}
+          onChange={handleCategory}
+          className="flex top-5 flex-row justify-center">
+              {
+                  categories.map(category =>(
+                      <RadioGroup.Option key={category} value={category}>{({active, checked}) => (
+                          <span  className={`drop-shadow-df text-white font-bold text-xl mx-3 rounded-lg border-lt-white px-4 ${
+                            checked ? 'bg-lt-green' :  'bg-dk-grey'
+                      }`}>{checked}{category}</span>
+
+                      )}</RadioGroup.Option>
+                  ))
+              }
+          </RadioGroup>
+          </div>
       </div>
       {
         filterCharacters().length === 0

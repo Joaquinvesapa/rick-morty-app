@@ -15,6 +15,9 @@ module.exports = {
 			  },
 			  height:{
 				'100': '100vh'
+			  },
+			  dropShadow:{
+				'df': '5px 10px 5px rgba(0,0,0,0.8)'
 			  }
 		},
 	},
