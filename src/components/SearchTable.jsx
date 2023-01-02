@@ -23,15 +23,14 @@ const SearchTable = () => {
   //#region 
   const [category, setCategory] = useState('')
 
-    const categories = [
-        "Female",
-        "Male",
-        "Alive",
-        "Dead",
-        "Unknwon"
-    ]
+    const categories = {
+      gender: ["Female",
+      "Male"],
+      status: ["Alive",
+      "Dead",
+      "Unknown"]
+    }
     const handleCategory = (category) =>{
-      console.log(category)
         setCategory(category)
     }
 
@@ -39,25 +38,33 @@ const SearchTable = () => {
     const [characters, setCharacters] = new useState(results)
 
     const filterByName = (items) => {
-      console.log(items)
+      // console.log(items)
       return items.filter(item => item.name.toLowerCase().includes(search.toLowerCase()))
     }
     const filterByStatus = (items) => {
-      console.log(items)
-      return items.filter(item => item.status.toLowerCase().includes(category.toLowerCase()))
+      // console.log(items)
+      return items.filter(item => item.status.toLowerCase() === category.toLowerCase() || item.status.toLowerCase() === '')
     }
     const filterByGender = (items) =>{
-      console.log(items)
-      return items.filter(item => item.gender.toLowerCase().includes(category.toLowerCase()))
+      // console.log(items)
+      return items.filter(item => item.gender.toLowerCase() === category.toLowerCase() || item.gender.toLowerCase() === '')
     }
 
-    const filterCharacters = () => {
-      let filter = filterByName(characters)
-      filter = filterByGender(filter)
-      filter = filterByStatus(filter)
+    const filterCharacters = (condition) => {
+      let filter
+      condition === true ? filter === characters
+      : filter = filterByName(characters)
+      if(categories.gender.includes(category)){
+        filter = filterByGender(filter)
+      }else{
+        filter = filterByStatus(filter)
+      }
 
       return filter
     }
+    useEffect(() => {
+      filterCharacters(false)
+    },[characters])
 
 
   return (
@@ -70,7 +77,17 @@ const SearchTable = () => {
           onChange={handleCategory}
           className="flex top-5 flex-row justify-center">
               {
-                  categories.map(category =>(
+                  categories.gender.map(category =>(
+                      <RadioGroup.Option key={category} value={category}>{({active, checked}) => (
+                          <span  className={`drop-shadow-df text-white font-bold text-xl mx-3 rounded-lg border-lt-white px-4 ${
+                            checked ? 'bg-lt-green' :  'bg-dk-grey'
+                      }`}>{checked}{category}</span>
+
+                      )}</RadioGroup.Option>
+                  ))
+              }
+              {
+                  categories.status.map(category =>(
                       <RadioGroup.Option key={category} value={category}>{({active, checked}) => (
                           <span  className={`drop-shadow-df text-white font-bold text-xl mx-3 rounded-lg border-lt-white px-4 ${
                             checked ? 'bg-lt-green' :  'bg-dk-grey'
@@ -83,12 +100,12 @@ const SearchTable = () => {
           </div>
       </div>
       {
-        filterCharacters().length === 0
+        filterCharacters(false).length === 0
       ? <div className='w-full h-10 pt-24 flex justify-center items-center'>
           <h1 className='relative text-bold font-bold text-lt-white text-3xl drop-shadow-[5px_12px_3px_rgba(0,0,0,0.5)] border-1'>Aca no hay nada pa'</h1>
         </div>
       : <div className="relative grid items-center w-full top-9 h-auto grid-cols-1 gap-2 md:grid-cols-2 md:gap-3 xl:grid-cols-3 xl:gap-4">{
-      filterCharacters().map((item) =>(
+      filterCharacters(false).map((item) =>(
         <div key={item.id} className="p-5 bg-dk-grey drop-shadow-[5px_10px_5px_rgba(0,0,0,0.8)] h-auto w-auto rounded-2xl flex justify-start flex-row max-w-xl space-x-7">
             <img className="object-cover w-36 rounded-2xl h-auto lg:w-44" src={item.image} alt=""/>     
             <div className="text-lt-white text-content">
