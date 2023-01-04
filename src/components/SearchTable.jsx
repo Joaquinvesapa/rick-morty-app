@@ -26,19 +26,25 @@ const SearchTable = () => {
   //e[2] === selectedStatus
   const handleFilterCharacters = e => {
     console.log(e)
+    //Si no hay ningun filtro, muestra todos los personajes
     if(e[0] === null && e[1] === 'None' && e[2] === 'None'){
       setFilteredCharachters(results)
-    }else if(e[0] != null && e[1] === 'None' && e[2] === 'None'){
+    }//Si hay filtro de busqueda pero de genero y estado no
+    else if(e[0] != null && e[1] === 'None' && e[2] === 'None'){
       setFilteredCharachters(results.filter(item => item.name.toLowerCase().includes(e[0].toLowerCase())))
-    }else if(e[0] != null && e[1] != 'None' && e[2] === 'None'){
+    }//Si Hay filtro de busqueda y genero pero de estado no
+    else if(e[0] != null && e[1] != 'None' && e[2] === 'None'){
       setFilteredCharachters(results.filter(item =>item.name.toLowerCase().includes(e[0].toLowerCase())
                                                 && item.gender.toLowerCase() === (e[1].toLowerCase())))
-    }else if(e[0] != null && e[1] == 'None' && e[2] != 'None'){
+    }//si hay filtro de busqueda y estado pero de genero no
+    else if(e[0] != null && e[1] == 'None' && e[2] != 'None'){
       setFilteredCharachters(results.filter(item =>item.name.toLowerCase().includes(e[0].toLowerCase())
                                                 && item.status.toLowerCase() === (e[2].toLowerCase())))
-    }else if(e[0] === null && e[1] != 'None' && e[2] === 'None'){
+    }//si hay filtro solo de genero
+    else if(e[0] === null && e[1] != 'None' && e[2] === 'None'){
       setFilteredCharachters(results.filter(item => item.gender.toLowerCase() === (e[1].toLowerCase())))
-    }else if(e[0] === null && e[1] == 'None' && e[2] != 'None'){
+    }//si hay filtro solo de estado
+    else if(e[0] === null && e[1] == 'None' && e[2] != 'None'){
       setFilteredCharachters(results.filter(item => item.status.toLowerCase() === (e[2].toLowerCase())))
   }
   }

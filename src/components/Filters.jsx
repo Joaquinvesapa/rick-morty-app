@@ -23,10 +23,7 @@ const Filters = (props) => {
         
         // setFilteredCharachters(characters);
         setSelectedCategory('None');
-        setStatus(category)
-        setGender(category)
-        console.log(selectedCategory, selectedStatus)
-        handleFilterCharacter(searchQuery,selectedGender, selectedStatus)
+        handleFilterCharacter(searchQuery,'None', 'None')
         // filter.splice(1,1,category)
         // setFilter(filter)
       }else if(category.toLowerCase() === "female" || category.toLowerCase() === "male") {
