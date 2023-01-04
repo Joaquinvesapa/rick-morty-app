@@ -18,33 +18,17 @@ const Filters = (props) => {
     
     const categories = ["None","Female","Male","Alive","Dead","Unknown"]
     //#region
-    const handleCategorySelect = category => {
+    const handleCategorySelect = async category => {
+      await setSelectedCategory(category);
       if (category === "None"){
-        
-        // setFilteredCharachters(characters);
-        setSelectedCategory('None');
+
         handleFilterCharacter(searchQuery,'None', 'None')
-        // filter.splice(1,1,category)
-        // setFilter(filter)
       }else if(category.toLowerCase() === "female" || category.toLowerCase() === "male") {
-  
-        // setFilteredCharachters(characters.filter(item => item.gender.toLowerCase() === category.toLowerCase()));
-        setSelectedCategory(category);
-        setStatus('None')
-        setGender(category)
         handleFilterCharacter(searchQuery,category, 'None')
-        // filter.splice(1,1,category)
-        // setFilter(filter)
   
       }else if(category.toLowerCase() === "alive" || category.toLowerCase() === "dead" || category.toLowerCase() === "unknown") {
-  
-        // setFilteredCharachters(characters.filter(item => item.status.toLowerCase() === category.toLowerCase()));
-        setSelectedCategory(category);
-        setGender('None')
-        setStatus(category)
+        
         handleFilterCharacter(searchQuery,'None', category)
-        // filter.splice(1,1,category)
-        // setFilter(filter)
       }
     };
   
