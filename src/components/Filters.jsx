@@ -5,8 +5,8 @@ import Categories from './Categories.jsx';
 const Filters = (props) => {
     const {filteredCharacters, setFilteredCharachters, characters, onFilterCharacter} = props
     const [selectedCategory, setSelectedCategory] = useState('None');
-    const [selectedGender, setGender] = useState('None')
-    const [selectedStatus, setStatus] = useState('None')
+    const [selectedGender, setGender] = useState("None")
+    const [selectedStatus, setStatus] = useState("None")
     const [searchQuery, setSearchQuery] = useState(null)
     const [filter, setFilter] = useState([searchQuery, selectedGender, selectedStatus])
  
@@ -19,12 +19,13 @@ const Filters = (props) => {
     const categories = ["None","Female","Male","Alive","Dead","Unknown"]
     //#region
     const handleCategorySelect = category => {
-      if (category === 'None'){
+      if (category === "None"){
         
         // setFilteredCharachters(characters);
         setSelectedCategory('None');
-        setGender('None')
-        setStatus('None')
+        setStatus(category)
+        setGender(category)
+        console.log(selectedCategory, selectedStatus)
         handleFilterCharacter(searchQuery,selectedGender, selectedStatus)
         // filter.splice(1,1,category)
         // setFilter(filter)
@@ -34,7 +35,7 @@ const Filters = (props) => {
         setSelectedCategory(category);
         setStatus('None')
         setGender(category)
-        handleFilterCharacter(searchQuery,category, selectedStatus)
+        handleFilterCharacter(searchQuery,category, 'None')
         // filter.splice(1,1,category)
         // setFilter(filter)
   
@@ -44,7 +45,7 @@ const Filters = (props) => {
         setSelectedCategory(category);
         setGender('None')
         setStatus(category)
-        handleFilterCharacter(searchQuery,selectedGender, category)
+        handleFilterCharacter(searchQuery,'None', category)
         // filter.splice(1,1,category)
         // setFilter(filter)
       }

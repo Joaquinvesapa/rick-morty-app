@@ -30,13 +30,17 @@ const SearchTable = () => {
       setFilteredCharachters(results)
     }else if(e[0] != null && e[1] === 'None' && e[2] === 'None'){
       setFilteredCharachters(results.filter(item => item.name.toLowerCase().includes(e[0].toLowerCase())))
-    // }else if(e[1] != 'None'){
-    //   setFilteredCharachters(results.filter(item => item.gender.toLowerCase() === (e[1].toLowerCase())))
-    // }else if(e[2] != 'None'){
-    //   setFilteredCharachters(results.filter(item => item.status.toLowerCase() === (e[2].toLowerCase())))
-    }else{
+    }else if(e[0] != null && e[1] != 'None' && e[2] === 'None'){
+      setFilteredCharachters(results.filter(item =>item.name.toLowerCase().includes(e[0].toLowerCase())
+                                                && item.gender.toLowerCase() === (e[1].toLowerCase())))
+    }else if(e[0] != null && e[1] == 'None' && e[2] != 'None'){
+      setFilteredCharachters(results.filter(item =>item.name.toLowerCase().includes(e[0].toLowerCase())
+                                                && item.status.toLowerCase() === (e[2].toLowerCase())))
+    }else if(e[0] === null && e[1] != 'None' && e[2] === 'None'){
+      setFilteredCharachters(results.filter(item => item.gender.toLowerCase() === (e[1].toLowerCase())))
+    }else if(e[0] === null && e[1] == 'None' && e[2] != 'None'){
       setFilteredCharachters(results.filter(item => item.status.toLowerCase() === (e[2].toLowerCase())))
-    }
+  }
   }
 
   return (
